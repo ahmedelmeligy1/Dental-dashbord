@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DentalCare — Settings</title>
+<link rel="stylesheet" href="../css/shared.css">
+<link rel="stylesheet" href="../css/settings.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo"><img src="../Screenshot 2026-02-26 161001.png" alt="DentalCare"></div>
+  <nav>
+    <a class="nav-item"        href="dashboard.html">    <span class="nav-icon">⊞</span> Dashboard</a>
+    <a class="nav-item"        href="appointments.html"> <span class="nav-icon">📅</span> Appointments</a>
+    <a class="nav-item"        href="patients.html">     <span class="nav-icon">👤</span> Patients</a>
+    <a class="nav-item"        href="doctors.html">      <span class="nav-icon">👨‍⚕️</span> Doctors</a>
+    <a class="nav-item"        href="prescriptions.html"><span class="nav-icon">💊</span> Prescriptions</a>
+    <a class="nav-item active" href="settings.html">     <span class="nav-icon">⚙️</span> Settings</a>
+  </nav>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title"><h1>Settings</h1><p>Manage clinic settings</p></div>
+    <div class="search-box">🔍 <input type="text" placeholder="Search settings..."></div>
+    <div class="topbar-actions">
+      <div class="icon-btn">🔔<span class="notif-dot"></span></div>
+      <div class="user-chip">
+        <div class="user-av">DS</div>
+        <div><div class="user-name">Dr. Smith</div><div class="user-role">Administrator</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="page-header">
+      <div><h2>Settings</h2><p>Clinic configuration and preferences</p></div>
+      <button class="btn btn-primary" onclick="saveSettings()">💾 Save Changes</button>
+    </div>
+
+    <div class="settings-layout">
+
+      <!-- Sidebar Tabs -->
+      <div class="settings-tabs">
+        <button class="stab active" data-tab="clinic"       onclick="switchTab(this,'clinic')">🏥 Clinic Info</button>
+        <button class="stab"        data-tab="profile"      onclick="switchTab(this,'profile')">👤 My Profile</button>
+        <button class="stab"        data-tab="notifications"onclick="switchTab(this,'notifications')">🔔 Notifications</button>
+        <button class="stab"        data-tab="security"     onclick="switchTab(this,'security')">🔒 Security</button>
+        <button class="stab"        data-tab="appearance"   onclick="switchTab(this,'appearance')">🎨 Appearance</button>
+      </div>
+
+      <!-- Tab Panels -->
+      <div class="settings-panel">
+
+        <!-- Clinic Info -->
+        <div class="tab-panel active" id="tab-clinic">
+          <div class="panel-title">Clinic Information</div>
+          <div class="settings-card">
+            <div class="form-grid">
+              <div class="form-field span-2">
+                <label>Clinic Name</label>
+                <input class="form-input" value="Dental">
+              </div>
+              <div class="form-field">
+                <label>Phone Number</label>
+                <input class="form-input" value="01097914092">
+              </div>
+              <div class="form-field">
+                <label>Email</label>
+                <input class="form-input" type="email" value="contact@dentalcare.com">
+              </div>
+              <div class="form-field span-2">
+                <label>Address</label>
+                <input class="form-input" value="123 Dental Street, cairo, NY 10001">
+              </div>
+              <div class="form-field">
+                <label>Working Hours (From)</label>
+                <input class="form-input" type="time" value="09:00">
+              </div>
+              <div class="form-field">
+                <label>Working Hours (To)</label>
+                <input class="form-input" type="time" value="18:00">
+              </div>
+              <div class="form-field span-2">
+                <label>Working Days</label>
+                <div class="days-picker">
+                  <label class="day-chip active"><input type="checkbox" checked> Mon</label>
+                  <label class="day-chip active"><input type="checkbox" checked> Tue</label>
+                  <label class="day-chip active"><input type="checkbox" checked> Wed</label>
+                  <label class="day-chip active"><input type="checkbox" checked> Thu</label>
+                  <label class="day-chip active"><input type="checkbox" checked> Fri</label>
+                  <label class="day-chip"><input type="checkbox"> Sat</label>
+                  <label class="day-chip"><input type="checkbox"> Sun</label>
+                </div>
+              </div>
+              <div class="form-field span-2">
+                <label>About / Description</label>
+                <textarea class="form-input" style="min-height:80px;">Leading dental clinic providing comprehensive oral care services with state-of-the-art technology.</textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- My Profile -->
+        <div class="tab-panel" id="tab-profile">
+          <div class="panel-title">My Profile</div>
+          <div class="settings-card">
+            <div class="profile-avatar-section">
+              <div class="profile-av">DS</div>
+              <div>
+                <div style="font-size:15px;font-weight:700;">Dr. James Smith</div>
+                <div style="font-size:13px;color:var(--muted);margin-top:3px;">Administrator · General Dentistry</div>
+                <button class="btn btn-outline btn-sm" style="margin-top:10px;">Change Photo</button>
+              </div>
+            </div>
+            <div class="form-grid" style="margin-top:20px;">
+              <div class="form-field">
+                <label>First Name</label>
+                <input class="form-input" value="James">
+              </div>
+              <div class="form-field">
+                <label>Last Name</label>
+                <input class="form-input" value="Smith">
+              </div>
+              <div class="form-field">
+                <label>Email</label>
+                <input class="form-input" type="email" value="j.smith@dental.com">
+              </div>
+              <div class="form-field">
+                <label>Phone</label>
+                <input class="form-input" value="555-2001">
+              </div>
+              <div class="form-field">
+                <label>Specialty</label>
+                <select class="form-input">
+                  <option selected>General Dentistry</option>
+                  <option>Orthodontics</option>
+                  <option>Oral Surgery</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>License No.</label>
+                <input class="form-input" value="DDS-44892">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="tab-panel" id="tab-notifications">
+          <div class="panel-title">Notification Preferences</div>
+          <div class="settings-card">
+            <div class="toggle-row">
+              <div><div class="toggle-label">New Appointment</div><div class="toggle-sub">Get notified when a new appointment is booked</div></div>
+              <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div><div class="toggle-label">Appointment Reminder</div><div class="toggle-sub">Remind patients 1 hour before appointment</div></div>
+              <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div><div class="toggle-label">Cancellation Alerts</div><div class="toggle-sub">Alert when an appointment is cancelled</div></div>
+              <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div><div class="toggle-label">New Patient Registration</div><div class="toggle-sub">Notify when a new patient registers</div></div>
+              <label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div><div class="toggle-label">Prescription Expiry</div><div class="toggle-sub">Alert when prescriptions are about to expire</div></div>
+              <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div><div class="toggle-label">Email Notifications</div><div class="toggle-sub">Send notifications to email</div></div>
+              <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security -->
+        <div class="tab-panel" id="tab-security">
+          <div class="panel-title">Security Settings</div>
+          <div class="settings-card">
+            <div class="panel-section-title">Change Password</div>
+            <div class="form-grid">
+              <div class="form-field span-2">
+                <label>Current Password</label>
+                <input class="form-input" type="password" placeholder="Enter current password">
+              </div>
+              <div class="form-field">
+                <label>New Password</label>
+                <input class="form-input" type="password" placeholder="New password">
+              </div>
+              <div class="form-field">
+                <label>Confirm Password</label>
+                <input class="form-input" type="password" placeholder="Confirm new password">
+              </div>
+            </div>
+            <button class="btn btn-primary btn-sm" style="margin-top:8px;" onclick="DC.showToast('Password updated!')">Update Password</button>
+
+            <div class="settings-divider"></div>
+
+            <div class="panel-section-title">Two-Factor Authentication</div>
+            <div class="toggle-row">
+              <div><div class="toggle-label">Enable 2FA</div><div class="toggle-sub">Add extra layer of security to your account</div></div>
+              <label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label>
+            </div>
+
+            <div class="settings-divider"></div>
+
+            <div class="panel-section-title">Active Sessions</div>
+            <div class="session-row">
+              <div>💻<span style="margin-left:10px;font-size:13px;font-weight:600;">Windows · Chrome</span></div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <span style="font-size:12px;color:var(--muted);">Current session</span>
+                <span class="badge badge-active">Active</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Appearance -->
+        <div class="tab-panel" id="tab-appearance">
+          <div class="panel-title">Appearance</div>
+          <div class="settings-card">
+
+            <div class="panel-section-title">Theme</div>
+            <div class="theme-options">
+              <div class="theme-opt active" data-theme="light" onclick="selectTheme(this,'light')">
+                <div class="theme-preview light-prev"></div>
+                <span>Light</span>
+              </div>
+              <div class="theme-opt" data-theme="dark" onclick="selectTheme(this,'dark')">
+                <div class="theme-preview dark-prev"></div>
+                <span>Dark</span>
+              </div>
+              <div class="theme-opt" data-theme="system" onclick="selectTheme(this,'system')">
+                <div class="theme-preview system-prev"></div>
+                <span>System</span>
+              </div>
+            </div>
+
+            <div class="settings-divider"></div>
+
+            <div class="panel-section-title">Accent Color</div>
+            <div class="color-options">
+              <div class="color-opt active" data-color="#3b82f6" style="background:#3b82f6;" onclick="selectColor(this)"></div>
+              <div class="color-opt" data-color="#7c3aed" style="background:#7c3aed;" onclick="selectColor(this)"></div>
+              <div class="color-opt" data-color="#22c55e" style="background:#22c55e;" onclick="selectColor(this)"></div>
+              <div class="color-opt" data-color="#f97316" style="background:#f97316;" onclick="selectColor(this)"></div>
+              <div class="color-opt" data-color="#ec4899" style="background:#ec4899;" onclick="selectColor(this)"></div>
+              <div class="color-opt" data-color="#0d9488" style="background:#0d9488;" onclick="selectColor(this)"></div>
+              <div class="color-opt" data-color="#dc2626" style="background:#dc2626;" onclick="selectColor(this)"></div>
+              <div class="color-opt" data-color="#1a2332" style="background:#1a2332;" onclick="selectColor(this)"></div>
+            </div>
+
+            <div class="settings-divider"></div>
+
+            <div class="panel-section-title">Font Size</div>
+            <div class="font-options">
+              <button class="font-opt" data-font="sm" onclick="selectFont(this,'sm')">
+                <span class="font-preview" style="font-size:12px;">Aa</span>
+                <span>Small</span>
+              </button>
+              <button class="font-opt active" data-font="md" onclick="selectFont(this,'md')">
+                <span class="font-preview" style="font-size:16px;">Aa</span>
+                <span>Medium</span>
+              </button>
+              <button class="font-opt" data-font="lg" onclick="selectFont(this,'lg')">
+                <span class="font-preview" style="font-size:22px;">Aa</span>
+                <span>Large</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- end settings-panel -->
+    </div><!-- end settings-layout -->
+  </div>
+</main>
+
+<div class="success-toast" id="toast"></div>
+<script src="../js/shared.js"></script>
+<script src="../js/settings.js"></script>
+</body>
+</html>

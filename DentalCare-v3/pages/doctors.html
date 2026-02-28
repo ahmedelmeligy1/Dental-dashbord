@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DentalCare — Doctors</title>
+<link rel="stylesheet" href="../css/shared.css">
+<link rel="stylesheet" href="../css/doctors.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo"><img src="../Screenshot 2026-02-26 161001.png" alt="DentalCare"></div>
+  <nav>
+    <a class="nav-item"        href="dashboard.html">    <span class="nav-icon">⊞</span> Dashboard</a>
+    <a class="nav-item"        href="appointments.html"> <span class="nav-icon">📅</span> Appointments</a>
+    <a class="nav-item"        href="patients.html">     <span class="nav-icon">👤</span> Patients</a>
+    <a class="nav-item active" href="doctors.html">      <span class="nav-icon">👨‍⚕️</span> Doctors</a>
+    <a class="nav-item"        href="prescriptions.html"><span class="nav-icon">💊</span> Prescriptions</a>
+    <a class="nav-item"        href="settings.html">     <span class="nav-icon">⚙️</span> Settings</a>
+  </nav>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title"><h1>Doctors</h1><p>Medical staff directory</p></div>
+    <div class="search-box">🔍 <input type="text" placeholder="Search doctors..."></div>
+    <div class="topbar-actions">
+      <div class="icon-btn">🔔<span class="notif-dot"></span></div>
+      <div class="user-chip">
+        <div class="user-av">DS</div>
+        <div><div class="user-name">Dr. Smith</div><div class="user-role">Administrator</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="page-header">
+      <div><h2>Doctors</h2><p>Medical staff and specialists</p></div>
+      <button class="btn btn-primary" onclick="DC.openModal('modal-add-doctor')">+ Add Doctor</button>
+    </div>
+
+    <div class="action-bar">
+      <input class="filter-input" placeholder="🔍  Search doctors..." oninput="filterDoctors(this.value)">
+      <select class="filter-select" onchange="filterBySpec(this.value)">
+        <option value="">All Specialties</option>
+        <option>General Dentistry</option><option>Orthodontics</option>
+        <option>Oral Surgery</option><option>Cosmetic Dentistry</option>
+        <option>Endodontics</option><option>Pediatric Dentistry</option>
+      </select>
+      <select class="filter-select" onchange="filterByAvail(this.value)">
+        <option value="">All Status</option>
+        <option value="true">Available</option>
+        <option value="false">Unavailable</option>
+      </select>
+    </div>
+
+    <div class="doctors-grid" id="doctors-grid"></div>
+  </div>
+</main>
+
+<!-- Add Doctor Modal -->
+<div class="modal-overlay" id="modal-add-doctor">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">👨‍⚕️ Add New Doctor</div>
+      <button class="modal-close" onclick="DC.closeModal('modal-add-doctor')">✕</button>
+    </div>
+    <form id="add-doctor-form">
+      <div class="form-grid">
+        <div class="form-field span-2"><label>Full Name *</label><input class="form-input" name="name" placeholder="e.g. Dr. Jane Doe" required></div>
+        <div class="form-field span-2"><label>Specialty *</label>
+          <select class="form-input" name="specialty" required>
+            <option value="">Select specialty...</option>
+            <option>General Dentistry</option><option>Orthodontics</option>
+            <option>Oral Surgery</option><option>Cosmetic Dentistry</option>
+            <option>Endodontics</option><option>Periodontics</option>
+            <option>Pediatric Dentistry</option><option>Prosthodontics</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Phone</label><input class="form-input" name="phone" placeholder="555-0000"></div>
+        <div class="form-field"><label>Experience</label><input class="form-input" name="experience" placeholder="e.g. 5 yrs"></div>
+        <div class="form-field"><label>License No.</label><input class="form-input" name="license" placeholder="DDS-12345"></div>
+        <div class="form-field"><label>Rating (1–5)</label><input class="form-input" name="rating" type="number" min="1" max="5" step="0.1" placeholder="4.8"></div>
+        <div class="form-field"><label>Status</label>
+          <select class="form-input" name="status">
+            <option value="available">Available</option>
+            <option value="unavailable">Unavailable</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Email</label><input class="form-input" name="email" type="email" placeholder="doctor@clinic.com"></div>
+        <div class="form-field span-2"><label>Bio / Notes</label>
+          <textarea class="form-input" name="bio" placeholder="Brief description..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="DC.closeModal('modal-add-doctor')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Add Doctor</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="success-toast" id="toast"></div>
+<script src="../js/shared.js"></script>
+<script src="../js/doctors.js"></script>
+</body>
+</html>

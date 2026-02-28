@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DentalCare — Appointments</title>
+<link rel="stylesheet" href="../css/shared.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo"><img src="../Screenshot 2026-02-26 161001.png" alt="DentalCare"></div>
+  <nav>
+    <a class="nav-item"        href="dashboard.html">    <span class="nav-icon">⊞</span> Dashboard</a>
+    <a class="nav-item active" href="appointments.html"> <span class="nav-icon">📅</span> Appointments</a>
+    <a class="nav-item"        href="patients.html">     <span class="nav-icon">👤</span> Patients</a>
+    <a class="nav-item"        href="doctors.html">      <span class="nav-icon">👨‍⚕️</span> Doctors</a>
+    <a class="nav-item"        href="prescriptions.html"><span class="nav-icon">💊</span> Prescriptions</a>
+    <a class="nav-item"        href="settings.html">     <span class="nav-icon">⚙️</span> Settings</a>
+  </nav>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title"><h1>Appointments</h1><p>Manage and schedule appointments</p></div>
+    <div class="search-box">🔍 <input type="text" placeholder="Search appointments..."></div>
+    <div class="topbar-actions">
+      <div class="icon-btn">🔔<span class="notif-dot"></span></div>
+      <div class="user-chip">
+        <div class="user-av">DS</div>
+        <div><div class="user-name">Dr. Smith</div><div class="user-role">Administrator</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="page-header">
+      <div><h2>Appointments</h2><p>All clinic appointments</p></div>
+      <button class="btn btn-primary" onclick="DC.openModal('modal-add-appt')">+ New Appointment</button>
+    </div>
+
+    <div class="stats-row cols-4">
+      <div class="stat-card"><div><div class="stat-label">Today</div><div class="stat-value sm" id="s-today">0</div></div><div class="stat-icon-wrap si-blue sm">📅</div></div>
+      <div class="stat-card"><div><div class="stat-label">Confirmed</div><div class="stat-value sm" id="s-confirmed">0</div></div><div class="stat-icon-wrap si-green sm">✅</div></div>
+      <div class="stat-card"><div><div class="stat-label">Pending</div><div class="stat-value sm" id="s-pending">0</div></div><div class="stat-icon-wrap si-orange sm">⏳</div></div>
+      <div class="stat-card"><div><div class="stat-label">Cancelled</div><div class="stat-value sm" id="s-cancelled">0</div></div><div class="stat-icon-wrap si-red sm">❌</div></div>
+    </div>
+
+    <div class="action-bar">
+      <input class="filter-input" placeholder="🔍  Search appointments..." oninput="filterAppts(this.value)">
+      <select class="filter-select" onchange="filterApptStatus(this.value)">
+        <option value="">All Status</option>
+        <option value="confirmed">Confirmed</option>
+        <option value="pending">Pending</option>
+        <option value="done">Done</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Patient</th><th>Treatment</th><th>Doctor</th>
+          <th>Date & Time</th><th>Status</th><th>Actions</th>
+        </tr></thead>
+        <tbody id="appt-tbody"></tbody>
+      </table>
+      <div class="pagination">
+        <span class="page-info" id="appt-count"></span>
+        <div class="page-btns">
+          <button class="page-btn">‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Add Appointment Modal -->
+<div class="modal-overlay" id="modal-add-appt">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">📅 New Appointment</div>
+      <button class="modal-close" onclick="DC.closeModal('modal-add-appt')">✕</button>
+    </div>
+    <form id="add-appt-form">
+      <div class="form-grid">
+        <div class="form-field span-2"><label>Patient *</label>
+          <select class="form-input patient-select" name="patient" required></select>
+        </div>
+        <div class="form-field span-2"><label>Treatment *</label>
+          <select class="form-input" name="treatment" required>
+            <option value="">Select treatment...</option>
+            <option>Dental Cleaning</option><option>Teeth Whitening</option>
+            <option>Root Canal Therapy</option><option>Tooth Extraction</option>
+            <option>Dental Filling</option><option>Crown Placement</option>
+            <option>Orthodontic Consultation</option><option>Dental Veneer</option>
+            <option>General Checkup</option>
+          </select>
+        </div>
+        <div class="form-field span-2"><label>Doctor *</label>
+          <select class="form-input doctor-select" name="doctor" required></select>
+        </div>
+        <div class="form-field"><label>Date *</label><input class="form-input" name="date" type="date" required></div>
+        <div class="form-field"><label>Time *</label><input class="form-input" name="time" type="time" required></div>
+        <div class="form-field span-2"><label>Notes</label>
+          <textarea class="form-input" name="notes" placeholder="Any special instructions..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="DC.closeModal('modal-add-appt')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Book Appointment</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="success-toast" id="toast"></div>
+<script src="../js/shared.js"></script>
+<script src="../js/appointments.js"></script>
+</body>
+</html>

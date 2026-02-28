@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DentalCare — Dashboard</title>
+<link rel="stylesheet" href="../css/shared.css">
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo"><img src="../Screenshot 2026-02-26 161001.png" alt="DentalCare"></div>
+  <nav>
+    <a class="nav-item active" data-page="dashboard"     href="dashboard.html">    <span class="nav-icon">⊞</span> Dashboard</a>
+    <a class="nav-item" data-page="appointments"         href="appointments.html"> <span class="nav-icon">📅</span> Appointments</a>
+    <a class="nav-item" data-page="patients"             href="patients.html">     <span class="nav-icon">👤</span> Patients</a>
+    <a class="nav-item" data-page="doctors"              href="doctors.html">      <span class="nav-icon">👨‍⚕️</span> Doctors</a>
+    <a class="nav-item" data-page="prescriptions"        href="prescriptions.html"><span class="nav-icon">💊</span> Prescriptions</a>
+    <a class="nav-item" data-page="settings"             href="settings.html">     <span class="nav-icon">⚙️</span> Settings</a>
+  </nav>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title"><h1>Dashboard</h1><p>Welcome back, Dr. Smith</p></div>
+    <div class="search-box">🔍 <input type="text" placeholder="Search patients, appointments..."></div>
+    <div class="topbar-actions">
+      <div class="icon-btn">🔔<span class="notif-dot"></span></div>
+      <div class="icon-btn">⚙️</div>
+      <div class="user-chip">
+        <div class="user-av">DS</div>
+        <div><div class="user-name">Dr. Smith</div><div class="user-role">Administrator</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content">
+
+    <div class="stats-row cols-3">
+      <div class="stat-card">
+        <div><div class="stat-label">Total Patients</div><div class="stat-value">2,847</div><div class="stat-change up">▲ +12%</div></div>
+        <div class="stat-icon-wrap si-blue">👥</div>
+      </div>
+      <div class="stat-card">
+        <div><div class="stat-label">Appointments</div><div class="stat-value">1,234</div><div class="stat-change up">▲ +8%</div></div>
+        <div class="stat-icon-wrap si-green">📅</div>
+      </div>
+      <div class="stat-card">
+        <div><div class="stat-label">Treatments</div><div class="stat-value">567</div><div class="stat-change down">▼ -3%</div></div>
+        <div class="stat-icon-wrap si-orange">🦷</div>
+      </div>
+    </div>
+
+    <div class="dash-grid">
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">Appointments Overview</span>
+          <div class="chart-tabs">
+            <button class="chart-tab active" onclick="setTab(this,'daily')">Daily</button>
+            <button class="chart-tab" onclick="setTab(this,'weekly')">Weekly</button>
+            <button class="chart-tab" onclick="setTab(this,'monthly')">Monthly</button>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="y-labels" id="y-labels"></div>
+          <div class="chart-area" id="chart-area"></div>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="featured-card">
+          <div class="featured-title">Featured Patient</div>
+          <div class="featured-patient">
+            <div class="feat-av" id="feat-av">SJ</div>
+            <div><div class="feat-name" id="feat-name">Sarah Johnson</div><div class="feat-age" id="feat-age">Age: 32</div></div>
+          </div>
+          <div class="info-row"><div class="info-label">Current Treatment</div><div class="info-value" id="feat-treatment">Root Canal</div></div>
+          <div class="info-row"><div class="info-label">Next Appointment</div><div class="info-value" id="feat-next">2:30 PM Today</div></div>
+          <div class="info-row">
+            <div class="prog-label"><span>Progress</span><strong id="feat-pct">75%</strong></div>
+            <div class="prog-bar"><div class="prog-fill" id="feat-bar" style="width:75%"></div></div>
+          </div>
+          <div class="feat-btns">
+            <a href="patients.html" class="btn btn-primary">👁 View Details</a>
+            <button class="btn btn-outline" onclick="nextPatient()">Next →</button>
+          </div>
+        </div>
+
+        <div class="todays-card">
+          <div class="todays-header">
+            <div class="todays-title">🕐 Today's Appointments</div>
+            <a href="appointments.html" class="btn btn-sm btn-primary">+ Add</a>
+          </div>
+          <div class="todays-list" id="todays-list"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<div class="success-toast" id="toast"></div>
+<script src="../js/shared.js"></script>
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DentalCare — Patients</title>
+<link rel="stylesheet" href="../css/shared.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo"><img src="../Screenshot 2026-02-26 161001.png" alt="DentalCare"></div>
+  <nav>
+    <a class="nav-item" data-page="dashboard"      href="dashboard.html">    <span class="nav-icon">⊞</span> Dashboard</a>
+    <a class="nav-item" data-page="appointments"   href="appointments.html"> <span class="nav-icon">📅</span> Appointments</a>
+    <a class="nav-item active" data-page="patients" href="patients.html">    <span class="nav-icon">👤</span> Patients</a>
+    <a class="nav-item" data-page="doctors"         href="doctors.html">     <span class="nav-icon">👨‍⚕️</span> Doctors</a>
+    <a class="nav-item" data-page="prescriptions"   href="prescriptions.html"><span class="nav-icon">💊</span> Prescriptions</a>
+    <a class="nav-item" data-page="settings"        href="settings.html">    <span class="nav-icon">⚙️</span> Settings</a>
+  </nav>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title"><h1>Patients</h1><p>All registered patients</p></div>
+    <div class="search-box">🔍 <input type="text" placeholder="Search patients..."></div>
+    <div class="topbar-actions">
+      <div class="icon-btn">🔔<span class="notif-dot"></span></div>
+      <div class="user-chip">
+        <div class="user-av">DS</div>
+        <div><div class="user-name">Dr. Smith</div><div class="user-role">Administrator</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="page-header">
+      <div><h2>Patients</h2><p>Manage all registered patients</p></div>
+      <button class="btn btn-primary" onclick="DC.openModal('modal-add-patient')">+ Add Patient</button>
+    </div>
+
+    <div class="action-bar">
+      <input class="filter-input" placeholder="🔍  Search by name or ID..." oninput="filterPatients(this.value)">
+      <select class="filter-select" onchange="filterByStatus(this.value)">
+        <option value="">All Status</option>
+        <option value="active">Active</option>
+        <option value="treatment">In Treatment</option>
+        <option value="inactive">Inactive</option>
+      </select>
+      <select class="filter-select" onchange="filterByGender(this.value)">
+        <option value="">All Genders</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <button class="btn btn-outline btn-sm">Export CSV</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Patient</th><th>Age</th><th>Gender</th><th>Phone</th>
+          <th>Last Visit</th><th>Treatment</th><th>Status</th><th>Actions</th>
+        </tr></thead>
+        <tbody id="pt-tbody"></tbody>
+      </table>
+      <div class="pagination">
+        <span class="page-info" id="pt-count"></span>
+        <div class="page-btns">
+          <button class="page-btn">‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Add Patient Modal -->
+<div class="modal-overlay" id="modal-add-patient">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">👤 Add New Patient</div>
+      <button class="modal-close" onclick="DC.closeModal('modal-add-patient')">✕</button>
+    </div>
+    <form id="add-patient-form">
+      <div class="form-grid">
+        <div class="form-field span-2"><label>Full Name *</label><input class="form-input" name="name" placeholder="e.g. John Smith" required></div>
+        <div class="form-field"><label>Age *</label><input class="form-input" name="age" type="number" placeholder="30" required min="1" max="120"></div>
+        <div class="form-field"><label>Gender *</label>
+          <select class="form-input" name="gender" required>
+            <option value="">Select...</option><option>Male</option><option>Female</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Phone</label><input class="form-input" name="phone" placeholder="555-0100"></div>
+        <div class="form-field"><label>Email</label><input class="form-input" name="email" type="email" placeholder="email@example.com"></div>
+        <div class="form-field span-2"><label>Current Treatment</label><input class="form-input" name="treatment" placeholder="e.g. Dental Cleaning"></div>
+        <div class="form-field"><label>Status</label>
+          <select class="form-input" name="status">
+            <option value="active">Active</option>
+            <option value="treatment">In Treatment</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Blood Type</label>
+          <select class="form-input" name="blood">
+            <option value="">Unknown</option>
+            <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+            <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+          </select>
+        </div>
+        <div class="form-field span-2"><label>Medical Notes</label>
+          <textarea class="form-input" name="notes" placeholder="Allergies, conditions, special notes..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="DC.closeModal('modal-add-patient')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Patient</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="success-toast" id="toast"></div>
+<script src="../js/shared.js"></script>
+<script src="../js/patients.js"></script>
+</body>
+</html>
